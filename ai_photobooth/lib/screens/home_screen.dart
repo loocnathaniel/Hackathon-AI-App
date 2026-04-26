@@ -94,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
         _resultImageBytes = result;
       });
     } catch (e) {
+      final errorText =
+          _aiService.errorMessage ?? e.toString().replaceFirst('Exception: ', '');
       setState(() {
-        _error =
-            _aiService.errorMessage ??
-            e.toString().replaceFirst('Exception: ', '');
+        _error = errorText;
         // Keep the UI usable for demos when API quota/network fails.
         _resultImageBytes = _inputImageBytes;
       });
